@@ -1,0 +1,7 @@
+name: Build
+on: [push]
+jobs:
+  build-on-openbsd:
+    runs-on: macos-latest
+    steps:
+      - run: type vboxmanage; vboxmanage list vms
