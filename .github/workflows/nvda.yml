@@ -1,7 +1,9 @@
 name: Build
 on: [push]
 jobs:
-  build-on-openbsd:
+  nvda:
     runs-on: macos-latest
     steps:
-      - run: type vboxmanage; vboxmanage list vms
+      - run: |
+        vagrant init gusztavvargadr/windows-10
+        vagrant up
