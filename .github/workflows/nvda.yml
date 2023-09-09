@@ -4,6 +4,7 @@ jobs:
   nvda:
     runs-on: macos-latest
     steps:
-      - run: |
-        vagrant init gusztavvargadr/windows-10
-        vagrant up
+      - name: Set up Windows
+        run: |
+          vagrant init gusztavvargadr/windows-10
+          vagrant up
