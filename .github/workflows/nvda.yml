@@ -7,4 +7,4 @@ jobs:
       - name: Set up Windows
         run: |
           vagrant init assistive-webdriver/win10-chromium-nvda
-          vagrant up
+          vagrant up --provision-with start-assistive-playwright
