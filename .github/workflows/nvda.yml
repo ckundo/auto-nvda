@@ -9,3 +9,4 @@ jobs:
           vagrant init assistive-webdriver/win10-chromium-nvda
           vagrant up
           vagrant provision --provision-with start-assistive-playwright
+          vboxwebsrv --authentication null

@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@playwright/test": "^1.38.0",
+    "assistive-playwright-test": "^0.2.2"
+  }
+}
