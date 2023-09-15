@@ -12,5 +12,10 @@ jobs:
         run: |
           vagrant init assistive-webdriver/win10-chromium-nvda
           vagrant up
+      - name: Provision Assistive Playwright
+        run: |
           vagrant provision --provision-with start-assistive-playwright
-          vboxwebsrv --authentication null
+          vboxwebsrv --authentication null &
+      - name: Run tests
+        run: |
+          npx @playwright/test test
