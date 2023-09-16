@@ -5,9 +5,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: acti  ons/setup-node@v3
         with:
           node-version: '18'
+      - name: Install dependencies
+        run: npm install
       - name: Set up Windows
         run: |
           vagrant init assistive-webdriver/win10-chromium-nvda
