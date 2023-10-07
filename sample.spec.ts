@@ -1,11 +1,11 @@
-import { expect } from "@playwright/test";
-import { test } from "./nvda.fixture";
+import { nvda } from "@guidepup/guidepup";
+import { expect, test } from "@playwright/test";
 
 test.describe("Playwright NVDA", () => {
   test("I can navigate the Guidepup Github page", async ({
-    nvda,
     page,
   }) => {
+    await nvda.start();
     await page.goto("https://github.com/guidepup/guidepup", {
       waitUntil: "domcontentloaded",
     });
@@ -21,5 +21,6 @@ test.describe("Playwright NVDA", () => {
 
     process.stdout.write(JSON.stringify(itemTextLog));
     expect(JSON.stringify(itemTextLog)).toEqual("heading")
+    await nvda.stop();
   });
 });
