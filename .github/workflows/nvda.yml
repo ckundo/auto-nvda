@@ -5,19 +5,14 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: guidepup/setup-action
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Install dependencies
-        run: npm install
-      - name: Set up Windows
+      - name: Install browsers
         run: |
-          vagrant init assistive-webdriver/win10-chromium-nvda
-          vagrant up
-      - name: Provision Assistive Playwright
-        run: |
-          vagrant provision --provision-with start-assistive-playwright
-          vboxwebsrv --authentication null &
+          yarn install
+          npx playwright install --with-deps chromium
       - name: Run tests
         run: |
-          npx @playwright/test test
+          npx playwright test
