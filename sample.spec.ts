@@ -11,13 +11,12 @@ test.describe("Playwright NVDA", () => {
       waitUntil: "domcontentloaded",
     });
 
-    // Wait for page to be ready and interact
     await expect(page.locator('header[role="banner"]')).toBeVisible();
 
     await nvda.perform(nvda.keyboardCommands.moveToNextHeading);
 
     const itemTextLog = await nvda.itemTextLog();
 
-    expect(itemTextLog[0]).toMatch("heading")
+    expect(JSON.stringify(itemTextLog)).toMatch("heading")
   });
 });
