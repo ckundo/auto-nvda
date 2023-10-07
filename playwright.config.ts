@@ -1,18 +1,17 @@
-import { AssistivePlaywrightTestConfig } from "assistive-playwright-test";
+import { voConfig } from "@guidepup/playwright";
+import { devices, PlaywrightTestConfig } from "@playwright/test";
 
-const config: AssistivePlaywrightTestConfig = {
-    timeout: 60000,
-    forbidOnly: !!process.env.CI,
-    retries: 5,
-    use: {
-        vmSettings: {
-            type: "virtualbox",
-            vm: "win10-chromium-nvda",
-            snapshot: "nvda"
-        },
-        baseURL: "https://www.example.com/",
-        viewport: null
-    }
+const config: PlaywrightTestConfig = {
+  ...voConfig,
+  reportSlowTests: null,
+  timeout: 3 * 60 * 1000,
+  retries: 2,
+  projects: [
+    {
+      name: "chrome",
+      use: { ...devices["Desktop Chrome"], headless: false, video: "on" },
+    },
+  ],
 };
 
 export default config;

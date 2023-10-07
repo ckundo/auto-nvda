@@ -1,17 +1,30 @@
-import { test } from "assistive-playwright-test";
+import { nvda } from "@guidepup/guidepup";
+import { test, expect } from "@playwright/test";
+import itemTextSnapshot from "./itemTextSnapshot.json";
 
-test("should open simple page", async ({
+test.describe("Playwright NVDA", () => {
+  test("I can navigate the Guidepup Github page", async ({
     page,
-    screenReader,
-    vmKeyboard,
-    vmMouse
-}) => {
-    await page.goto("/");
-    await vmMouse.click(0, 0, {
-        origin: await page.getByRole("link", { name: /more information/i })
+  }) => {
+    await nvda.start();
+    await page.goto("https://github.com/guidepup/guidepup", {
+      waitUntil: "domcontentloaded",
     });
-    await vmKeyboard.press("h");
-    await screenReader.waitForMessage("Example Domains");
-    await vmKeyboard.press("h");
-    await screenReader.waitForMessage("Further Reading");
+
+    // Wait for page to be ready and interact
+    await expect(page.locator('header[role="banner"]')).toBeVisible();
+    await nvda.next();
+
+    while ((await nvda.itemText()) !== "Guidepup heading level 1") {
+      await nvda.perform(nvda.keyboardCommands.moveToNextHeading);
+    }
+
+    // Assert that we've ended up where we expected and what we were told on
+    // the way there is as expected.
+    const itemTextLog = await nvda.itemTextLog();
+
+    for (const expectedItem of itemTextSnapshot) {
+      expect(!!itemTextLog.find(log => log.includes(expectedItem))).toBe(true);
+    }
+  });
 });

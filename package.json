@@ -1,6 +1,6 @@
 {
-  "devDependencies": {
-    "@playwright/test": "^1.38.0",
-    "assistive-playwright-test": "^0.2.2"
+  "dependencies": {
+    "@guidepup/playwright": "^0.10.0",
+    "@playwright/test": "^1.38.1"
   }
 }
