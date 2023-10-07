@@ -12,7 +12,7 @@ test.describe("Playwright NVDA", () => {
     });
 
     await expect(page.locator('header[role="banner"]')).toBeVisible();
-
+    await nvda.perform(nvda.keyboardCommands.toggleBetweenBrowseAndFocusMode);
     await nvda.perform(nvda.keyboardCommands.moveToNextHeading);
 
     const itemTextLog = await nvda.itemTextLog();
