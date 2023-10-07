@@ -2,10 +2,10 @@ name: Build
 on: [push]
 jobs:
   nvda:
-    runs-on: macos-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: guidepup/setup-action
+      - uses: guidepup/setup-action@0.11.2
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
