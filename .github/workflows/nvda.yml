@@ -18,6 +18,11 @@ jobs:
       - name: Install browsers
         run: |
           npx playwright install --with-deps chromium
+      - name: Install video device
+        shell: bash
+        run: |
+          curl "https://github.com/rdp/screen-capture-recorder-to-video-windows-free/releases/download/v0.13.3/Setup.Screen.Capturer.Recorder.v0.13.3.exe" -o recorder.exe
+          open recorder.exe
       - run: ffmpeg -list_devices true -f dshow -i dummy
       - name: Run tests
         run: |
