@@ -1,17 +1,17 @@
-import { nvda } from "@guidepup/guidepup";
-import { test, expect } from "@playwright/test";
-import itemTextSnapshot from "./itemTextSnapshot.json";
+import { expect } from "@playwright/test";
+import { test } from "./nvda.fixture";
 
 test.describe("Playwright NVDA", () => {
   test("I can navigate the Guidepup Github page", async ({
+    nvda,
     page,
   }) => {
-    await nvda.start();
     await page.goto("https://github.com/guidepup/guidepup", {
       waitUntil: "domcontentloaded",
     });
 
     await expect(page.locator('header[role="banner"]')).toBeVisible();
+
     await nvda.perform(nvda.keyboardCommands.reportCurrentFocus);
     await nvda.perform(nvda.keyboardCommands.reportTitle);
     await nvda.perform(nvda.keyboardCommands.exitFocusMode);
