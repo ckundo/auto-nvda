@@ -19,6 +19,7 @@ test.describe("Playwright NVDA", () => {
 
     const itemTextLog = await nvda.itemTextLog();
 
+    process.stdout.write(JSON.stringify(itemTextLog));
     expect(JSON.stringify(itemTextLog)).toEqual("heading")
   });
 });
