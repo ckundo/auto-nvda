@@ -18,7 +18,7 @@ jobs:
       - name: Install browsers
         run: |
           npx playwright install --with-deps chromium
-      - run: ffmpeg -f dshow -i video="screen-capture-recorder" output.mkv
+      - run: ffmpeg -list_devices true -f dshow -i dummy
       - name: Run tests
         run: |
           npx playwright test
