@@ -6,7 +6,10 @@ export const test = base.extend<{ nvda: NVDA }>({
       try {
         await nvda.start();
         use(nvda);
-      } finally  {
+      } catch(e: any) {
+         process.stderr.write(e.message);
+        throw e;
+      } finally {
         await nvda.stop();
       }
     }
