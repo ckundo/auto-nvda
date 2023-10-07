@@ -18,11 +18,11 @@ jobs:
       - name: Install browsers
         run: |
           npx playwright install --with-deps chromium
-      - name: Install video device
+      - name: Install camstudio
         shell: bash
         run: |
-          curl "https://github.com/rdp/screen-capture-recorder-to-video-windows-free/releases/download/v0.13.3/Setup.Screen.Capturer.Recorder.v0.13.3.exe" -o recorder.exe
-          open recorder.exe
+          git clone https://github.com/stevenhoving/camstudio.git --recursive
+          cd camstudio && bootstrap.cmd && cd vs_build && ls -al
       - run: ffmpeg -list_devices true -f dshow -i dummy
       - name: Run tests
         run: |
