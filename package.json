@@ -2,5 +2,8 @@
   "dependencies": {
     "@guidepup/playwright": "^0.10.0",
     "@playwright/test": "^1.38.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.3"
   }
 }
